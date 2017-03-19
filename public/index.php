@@ -1,19 +1,17 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+//print phpinfo(); die;
 use AsceticCMS\Lib\Render;
 use AsceticCMS\Lib\Request;
 use AsceticCMS\Lib\Response;
 use AsceticCMS\Lib\SimpleRecord;
 
 /**
- * @todo: add autoload
- */
-/**
  * @todo: add ExceptionHandler
  */
 
-require 'vendor/autoload.php';
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+require '../vendor/autoload.php';
 $app = new AsceticCMS\Lib\App();
 $si = new AsceticCMS\Components\ServerInfo\ServerInfo();
 
