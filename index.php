@@ -1,3 +1,4 @@
- <?php
-echo "hello world!";
+<?php
+//todo: add autoload
+echo phpinfo();
 ?>
