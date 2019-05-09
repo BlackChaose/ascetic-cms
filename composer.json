@@ -1,0 +1,29 @@
+{
+    "name": "nikits_kalitin/ascetic-cms-lib",
+    "type": "engine",
+    "description": "Simple PHP CMS that help you quickly write simple site, landing or blog",
+    "keywords": ["CMS","blog system","landing page"],
+    "license": "MIT",
+    "authors":[
+        {
+            "name": "Nikita Kalitin",
+            "email": "nikita.s.kalitin@gmail.com",
+            "homepage": "https://primereason.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "ext-json": "*",
+        "ext-libxml": "*",
+        "ext-simplexml": "*"
+    }, 
+    "require-dev": {
+        "phpunit/phpunit": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AsceticCMSLib\\": "AsceticCMS"
+        }
+    }   
+
+}
