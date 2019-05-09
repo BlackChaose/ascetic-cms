@@ -12,4 +12,7 @@ class App
     {
         return $this->VERSION;
     }
+    public function sayHello(){
+        return "Hello!";
+    }
 }
