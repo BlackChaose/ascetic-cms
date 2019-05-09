@@ -1,5 +1,5 @@
 {
-    "name": "nikits_kalitin/ascetic-cms-lib",
+    "name": "nikita_kalitin/ascetic-cms-lib",
     "type": "engine",
     "description": "Simple PHP CMS that help you quickly write simple site, landing or blog",
     "keywords": ["CMS","blog system","landing page"],
