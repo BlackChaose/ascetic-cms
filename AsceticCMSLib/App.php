@@ -10,7 +10,7 @@ class App
     const VERSION = '0.1.1';
     public function showInfo()
     {
-        return $this->VERSION;
+        return self::VERSION;
     }
     public function sayHello(){
         return "Hello!";
