@@ -1,5 +1,5 @@
 {
-    "name": "nikita_kalitin/ascetic-cms-lib",
+    "name": "nikita_kalitin/ascetic-cms",
     "type": "engine",
     "description": "Simple PHP CMS that help you quickly write simple site, landing or blog",
     "keywords": ["CMS","blog system","landing page"],
@@ -12,19 +12,17 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
-        "ext-json": "*",
-        "ext-libxml": "*",
-        "ext-simplexml": "*"
+        "php": ">=5.5.0"   
     }, 
     "require-dev": {
         "phpunit/phpunit": "^4.0"
     },
     "autoload": {
         "psr-4": {
-            "AsceticCMS\\": "AsceticCMSLib/"
+            "AsceticCMS\\Lib\\": "src/Lib",
+            "AsceticCMS\\MVC\\:"src/MVC",
+            "AsceticCMS\\Component\\":"src/Components"
         }
     },
     "minimum-stability": "dev"   
-
 }
