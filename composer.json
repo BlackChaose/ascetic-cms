@@ -20,8 +20,8 @@
     "autoload": {
         "psr-4": {
             "AsceticCMS\\Lib\\": "src/Lib",
-            "AsceticCMS\\MVC\\:"src/MVC",
-            "AsceticCMS\\Component\\":"src/Components"
+            "AsceticCMS\\MVC\\": "src/MVC",
+            "AsceticCMS\\Component\\": "src/Components"
         }
     },
     "minimum-stability": "dev"   
