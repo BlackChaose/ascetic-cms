@@ -14,10 +14,10 @@ echo "</pre>";
 $si = new AsceticCMS\Components\ServerInfo\ServerInfo();
 
 echo $si->show();
-
-echo $app->get('/tst/1',function(){
-    return "<h1><b>Hack The Planet!</b></h1>";
+$app->get('/tst/1',function(){
+    echo "HI! Dunduk! How are you?";
 });
+$app->run();
 #echo phpinfo();
 
 ?>

@@ -6,8 +6,8 @@ class Router{
         //FIXME: !
     }
     public function get($str, $callback){
-        if($_SERVER['REDIRECT_URL']===$str){            
-            return call_user_func($callback);;
+        if($_SERVER['REDIRECT_URL']==$str){            
+            return $callback;
         }
         else return false;
     }
