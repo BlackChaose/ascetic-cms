@@ -2,4 +2,4 @@
 /**
 Controller
 */
-namespace 'MVC/Controller';
+namespace MVC\Controllers;

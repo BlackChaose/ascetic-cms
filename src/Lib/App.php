@@ -26,6 +26,13 @@ class App
         }
     }
 
+    public function put($str, $callback){
+        if(Router::put($str, $callback)){
+            array_push($this->callbackArray,$callback);      
+       
+        }
+    }
+
     //FIXME - refactor + valid headers! // without REDIRECT_URL NOTICE - not index!!! - FIX IT!
     public function run(){
         if (count($this->callbackArray) === 0){

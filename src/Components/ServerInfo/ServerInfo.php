@@ -32,7 +32,9 @@ Class ServerInfo{
         //FIXME
         if(!empty($_SERVER['REDIRECT_URL'])){
             $result .= "<td style = \"border: 1px solid black;\">".$_SERVER['REDIRECT_URL']."</td>";
-        }        
+        }  else {
+            $result .= "<td style = \"border: 1px solid black;\"></td>";
+        }      
         $result .= "<td style = \"border: 1px solid black;\">".$_SERVER['SERVER_PROTOCOL']."</td>";
         $result .= "<td style = \"border: 1px solid black;\">".$_SERVER['REQUEST_METHOD']."</td>";
         $result .= "<td style = \"border: 1px solid black;\">".$_SERVER['QUERY_STRING']."</td>";
