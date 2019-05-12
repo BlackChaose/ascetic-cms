@@ -1,21 +1,18 @@
 <?php
+use AsceticCMS\Lib\Response;
+
 //todo: add autoload
 require 'vendor/autoload.php';
 ini_set('display_errors',1);
 $app = new AsceticCMS\Lib\App();
-
-echo "<pre>";
-echo $app->sayHello();
-echo "\n";
-echo $app->showInfo();
-echo "\n";
-echo "</pre>";
-
 $si = new AsceticCMS\Components\ServerInfo\ServerInfo();
-
-echo $si->show();
+$app->get('',function() use($si) {
+    $resp = new Response('200 Ok!', $si->show());
+    $resp -> send();
+});
 $app->get('/tst/1',function(){
-    echo "HI! Dunduk! How are you?";
+    $resp = new Response('200 Ok!', "HI! Dunduk! How are you?");
+    $resp -> send();
 });
 $app->run();
 #echo phpinfo();

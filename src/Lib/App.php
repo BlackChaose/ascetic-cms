@@ -26,17 +26,19 @@ class App
         }
     }
 
-    //FIXME - refactor + valid headers! // without REDIREC_URL NOTICE - not index!!! - FIX IT!
+    //FIXME - refactor + valid headers! // without REDIRECT_URL NOTICE - not index!!! - FIX IT!
     public function run(){
         if (count($this->callbackArray) === 0){
-            echo "ERROR 404. Nof found!";            
+            $resp = new Response('404 Not Found!', 'Error! This page not found! Please check web-address!');
+            $resp -> send();        
             return false;
         } else if(count($this->callbackArray) === 1){
             $callFunc=array_pop($this->callbackArray);
             call_user_func($callFunc);        
             return true;
         }else {
-            echo "Error 500! Server Error!";
+            $resp = new Response('500 Server Error!', 'Error!!! Please message to system administrator! ');
+            $resp -> send();        
             return false;
         }
     }
