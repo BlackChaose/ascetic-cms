@@ -1,5 +1,5 @@
 <?php
-namespace 'Security';
+namespace AsceticCMS\Components\SecChk;
 
 class WatchDog {
 public function getName(){

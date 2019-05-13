@@ -32,8 +32,7 @@ class App
        
         }
     }
-
-    //FIXME - refactor + valid headers! // without REDIRECT_URL NOTICE - not index!!! - FIX IT!
+    
     public function run(){
         if (count($this->callbackArray) === 0){
             $resp = new Response('404 Not Found!', 'Error! This page not found! Please check web-address!');
