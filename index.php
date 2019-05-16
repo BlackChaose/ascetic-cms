@@ -1,5 +1,6 @@
 <?php
 use AsceticCMS\Lib\Response;
+use AsceticCMS\Lib\AsceticRecord;
 
 //todo: add autoload
 require 'vendor/autoload.php';
@@ -19,6 +20,14 @@ $app->get('/tst/put', function(){
     $resp = new Response('200 Ok!', $tpl->show());
     $resp -> send();
 });
+
+$app->get('/tst/db', function(){
+    //$dt = new AsceticRecord();    
+    //$resp = new Response('200 Ok!', $dt->readTable('users'));
+    $resp = new Response('200 Ok!', phpinfo());
+    $resp -> send();
+});
+
 $app->put('/tst/user' , function(){
     $resp = new Response('201 Ok!', "<strong>PUT response</strong><br><pre>".$_POST['name']."<br>".$_POST['email']."</pre>");
     $resp -> send();
