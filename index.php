@@ -22,9 +22,9 @@ $app->get('/tst/put', function(){
 });
 
 $app->get('/tst/db', function(){
-    //$dt = new AsceticRecord();    
-    //$resp = new Response('200 Ok!', $dt->readTable('users'));
-    $resp = new Response('200 Ok!', phpinfo());
+    $dt = new AsceticRecord();    
+    $resp = new Response('200 Ok!', $dt->readTable('users'));
+    //$resp = new Response('200 Ok!', phpinfo());
     $resp -> send();
 });
 

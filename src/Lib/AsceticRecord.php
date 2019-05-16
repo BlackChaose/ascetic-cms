@@ -13,13 +13,13 @@ class AsceticRecord{
     }
 
     public function readTable(string $tbl){
-        $conn = new mysqli('users',$this->config['login'], $this->config['passkey']);
+        $conn = new \mysqli($this->config['address'],$this->config['login'], $this->config['passkey'],'ascetic_cms');
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
             }
         $sql = "SELECT * FROM users";
-        $result = $con->query($sql);
+        $result = $conn->query($sql);
         $conn->close();
-        return $result;    
+        return json_encode($result->fetch_array(MYSQLI_ASSOC));    
     }
 }
