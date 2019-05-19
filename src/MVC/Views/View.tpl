@@ -1,7 +1,3 @@
-/** 
-View
-TODO - возможно здесь нужен рекурсивный алгоритм чтения и конвертации... хз.
-*/ 
 $title="AsceticCMS"
 doctype = 'html'
 html(lang = 'ruRU')
