@@ -24,7 +24,7 @@ $app->get('/tst/put', function(){
 
 $app->get('/tst/db', function(){
     $dt = new SimpleRecord();    
-    $resp = new Response('200 Ok!', $dt->readTable('users'));
+    $resp = new Response('200 Ok!', implode(";", $dt->readTable('users')));
     //$resp = new Response('200 Ok!', phpinfo());
     $resp -> send();
 });

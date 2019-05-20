@@ -14,19 +14,19 @@ class SimpleRecord{
     }
 
     public function readTable(string $tbl){
-        $dsn = "mysql:host=$this->config['host'];dbname=$this->config['db'];charset=$this->config['charset']";
+        $dsn = "mysql:host=".$this->config['host'].";dbname=".$this->config['db'].";charset=".$this->config['charset'];
         $opt = [
             \PDO::ATTR_ERRMODE   => \PDO::ERRMODE_EXCEPTION,
             \PDO:: ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
             \PDO::ATTR_EMULATE_PREPARES => true,
         ];
         $pdo = new \PDO($dsn, $this->config['user'], $this->config['passkey'], $opt);
-
-        $stmt = $pdo->query('SELECT * FROM users');
-        $result = '';
+        $query='SELECT login_name FROM '.$tbl;
+        $stmt = $pdo->query($query);
+        $result = array();
         while ($row = $stmt->fetch())
             {
-                $result.= $row[''] . "\n";
+                array_push($result, $row['login_name']);
             }
                 
         return $result;    
