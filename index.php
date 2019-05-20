@@ -1,6 +1,6 @@
 <?php
 use AsceticCMS\Lib\Response;
-use AsceticCMS\Lib\AsceticRecord;
+use AsceticCMS\Lib\SimpleRecord;
 use AsceticCMS\Lib\Render;
 
 //todo: add autoload
@@ -23,7 +23,7 @@ $app->get('/tst/put', function(){
 });
 
 $app->get('/tst/db', function(){
-    $dt = new AsceticRecord();    
+    $dt = new SimpleRecord();    
     $resp = new Response('200 Ok!', $dt->readTable('users'));
     //$resp = new Response('200 Ok!', phpinfo());
     $resp -> send();
