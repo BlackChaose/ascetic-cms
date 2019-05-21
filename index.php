@@ -3,7 +3,9 @@ use AsceticCMS\Lib\Response;
 use AsceticCMS\Lib\SimpleRecord;
 use AsceticCMS\Lib\Render;
 
-//todo: add autoload
+/**@todo: add autoload */
+/**@todo: add ExceptionHandler */
+
 require 'vendor/autoload.php';
 ini_set('display_errors',1);
 $app = new AsceticCMS\Lib\App();
