@@ -9,7 +9,7 @@ ini_set('display_errors',1);
 $app = new AsceticCMS\Lib\App();
 $si = new AsceticCMS\Components\ServerInfo\ServerInfo();
 $app->get('',function() use($si) {
-    $resp = new Response('200 Ok!', $si->show());
+    $resp = new Response('200 Ok!', 123);
     $resp -> send();
 });
 $app->get('/tst/1', function(){
