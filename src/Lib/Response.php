@@ -6,7 +6,7 @@ class Response{
     private $body;    
     public function __construct(string $code, string $bdTxt)
     {
-        
+        if(!is_string($code) || !is_string($bdTxt)) throw new \Exception("not valid params in Response's __construct");
         switch ($code){
         
             case '100 Continue!': 
