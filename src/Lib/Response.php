@@ -4,9 +4,15 @@ namespace AsceticCMS\Lib;
 class Response{
     private $callback;
     private $body;    
-    public function __construct(string $code, string $bdTxt)
+    public function __construct($code, $bdTxt)
     {
+<<<<<<< HEAD
         if(!is_string($code) || !is_string($bdTxt)) throw new \Exception("not valid params in Response's __construct");
+=======
+        if(!is_string($code) || !is_string($bdTxt)){
+            throw new \Exception('invalid param in __construct, class Response');
+        }
+>>>>>>> 650eb7b822ad500ba8d101a58a207a04ea862fb7
         switch ($code){
         
             case '100 Continue!': 
