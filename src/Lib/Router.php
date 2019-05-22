@@ -10,9 +10,9 @@ class Router{
         if($_SERVER['REQUEST_METHOD'] !== 'GET'){
             return false;
         }       
-        if(empty($_SERVER['REDIRECT_URL']) && $str == ''){
+        if((empty($_SERVER['REQUEST_URI']) || $_SERVER['REQUEST_URI']=='/') && $str == ''){
             return $callback;
-        }else if(!empty($_SERVER['REDIRECT_URL']) && $_SERVER['REDIRECT_URL'] == $str){            
+        }else if(!empty($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] == $str){      
             return $callback;
         }
         else return false;
