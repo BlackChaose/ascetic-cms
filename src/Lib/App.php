@@ -1,11 +1,9 @@
 <?php
 /**
  * Ascetic-CMS App
- * Продумать логику - создание объекта App , прописывание  маршрутоа, обработка теукущего  и рендер после запуска App->run(); 
+ * Продумать логику - создание объекта App , прописывание  маршрутоа, обработка теукущего  и рендер после запуска App->run();
  */
 namespace AsceticCMS\Lib;
-
-set_exception_handler(array('AsceticCMS\Lib\ErrorsHandler', 'saveLog'));
 
 class App
 {
@@ -21,8 +19,11 @@ class App
         return "Hello!";
     }
 
-    public function get($str, $callback)
+    public function get($str, callable $callback)
     {
+        if (!is_string($str)) {
+            throw new \Exception('not valid param $str in App->get($str, $callback)');
+        }
         if (Router::get($str, $callback)) {
             array_push($this->callbackArray, $callback);
         }
@@ -51,10 +52,8 @@ class App
                 $resp->send();
                 return false;
             }
-        }
-        catch(Exception $ex){
-           ErrorsHanlder::saveLog($ex);
-           print "<div style=\"color: tomato;\"><blink>ERROR! watch log file!</blink></div>";
+        } catch (Exception $e) {
+            ErrorsHandler::saveLog($e);
         }
     }
 }
