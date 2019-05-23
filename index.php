@@ -75,31 +75,14 @@ $app->put('/tst/user' , function(){
 });
 
 $app->get('/form', function(){
-    $formConfig = array(
-        'attribute'=>array(
-            'class'=>'AsceticForm',
-            'id'=>'OSForm1',
-            'method'=>'POST',
-            'name'=>'testForm'
-        ),
-        'elements'=>array(
-            [
-                /*'irderNum'=>'1',*/
-                'type'=>'label',
-                'for'=>'town',
-                'value'=>'Town'
-            ],
-            [
-                'type'=>'input',
-                'name'=>'town',
-                'required'=>true,
-                'id'=>'townInput'
-            ],
-            
-        )
-    );
-    $AF = new AsceticForm($formConfig);
-    $resp = new Response('200 Ok!', $AF->show());
+    $confa='{
+        "form":{"name":"testForm", "method":"POST" "action": null},
+        "labels":["first name", "last name", "town", "country","INN","phone","email"],
+        "inputs":["name","surname","Moscow","Russia","none","+79259259259","admin@mail.ru"]
+    }';
+    
+  
+    $resp = new Response('200 Ok!', Render::renderView($confa,'MailForm.php'));
     $resp -> send();
 });
 
