@@ -11,7 +11,7 @@ class ErrorsHandler
         $path = __DIR__."/../log/error.log";
         try
         {
-            $msg = date("Y-m-d H:i:s")." : "."src: ".__FILE__." message: ".$e->getMessage();
+            $msg = date("Y-m-d H:i:s")." : "."Exception ".$e->getMessage()." on line ".$e->getLine()." in file: ".$e->getFile()."\n trace: ".$e->getTraceAsString()."\n";
             $ff = file_put_contents($path, $msg, FILE_APPEND);
             if(!$ff){
                 throw new \Exception("File error.log not access for write!");
