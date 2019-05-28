@@ -7,7 +7,7 @@
 <html lang="ru">
     <head>
         <meta charset='utf-8'>
-        <title>$conf['title']</title>
+        <title>$config['title']</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -15,16 +15,16 @@
     </head>
 <div class="container-fluid">
     <div class="MailForm row">
-        <div class="col"><strong><?= $conf['title'] ?></strong></div>
+        <div class="col"><strong><?= $config['title'] ?></strong></div>
     </div>
     <div class="Mailform row">
         <div class='col-12'>
-            <form name="<?= $conf['form']['name'] ?>" method="<?= $conf['form']['method'] ?>" action="<?= $conf['acton'] ?>">
-                <?php foreach($conf['inputs'] as $key=>$val):?>
-                <div class='row'><div class='col-10'><input id="<?=$key?>" value="<?=$val?>"></div></div>
-                <div class='row'><div class='col-10'><label for="<?=$key?>"><?=$conf['labels'][$key]['value']?></label></div></div>
+            <form name="<?= $config['form']['name'] ?>" method="<?= $config['form']['method'] ?>" action="<?= $config['form']['action'] ?>">
+                <?php foreach($config['inputs'] as $key=>$val):?>
+                <div class='row'><div class='col-10'><label for="<?=$key?>"><?=$config['labels'][$key]?></label></div></div>
+                <div class='row'><div class='col-10'><input id="<?=$key?>" value="<?=$val?>"></div></div>                
                 <?php endforeach;?>
-                <div class='row'><input class="btn btn-info" type='submit'>$conf['submit']</div>
+                <div class='row'><input class="btn btn-info" type='submit' value="<?=$config['submit']?>"></div>
             </form>
         </div>
     </div>

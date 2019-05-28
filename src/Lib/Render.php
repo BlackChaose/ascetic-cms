@@ -43,14 +43,12 @@ class Render
     public static function renderView($data, $ViewName)
     {
         $path = __DIR__ . "/../MVC/Views/" . $ViewName;
-
-        $conf = array();
-        $arr = json_decode($data);
-        print_r($arr); die;
-        if (is_array($arr) && file_exists($path)) {
-            $conf = $arr;
-            include($path);
+        if (file_exists($path)) {
+            $config = json_decode($data, true);
+            $str = file_get_contents(eval($path));
+            return $str;
+        } else {
+            throw new \Exception('invalid params in Render::renderView();');
         }
-        throw new \Exception('invalid params in Render::renderView();');
     }
 }

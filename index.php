@@ -75,14 +75,19 @@ $app->put('/tst/user' , function(){
 });
 
 $app->get('/form', function(){
-    $confa='{
-        "form":{"name":"testForm", "method":"POST" "action": null},
-        "labels":["first name", "last name", "town", "country","INN","phone","email"],
-        "inputs":["name","surname","Moscow","Russia","none","+79259259259","admin@mail.ru"]
+    $conf='{
+        "title": "User Card",
+        "form": {
+            "name": "testForm",
+            "method": "POST",
+            "action": null
+        },
+        "labels": ["first name", "last name", "town", "country", "INN", "phone", "email"],
+        "inputs": ["name", "surname", "Moscow", "Russia", "none", "+79259259259", "admin@mail.ru"],
+        "submit": "Submit Query"
     }';
-    
   
-    $resp = new Response('200 Ok!', Render::renderView($confa,'MailForm.php'));
+    $resp = new Response('200 Ok!', Render::renderView($conf,'MailForm.php'));
     $resp -> send();
 });
 
