@@ -5,8 +5,8 @@ class Response{
     private $callback;
     private $body;    
     public function __construct($code, $bdTxt)
-    {
-        if(!is_string($code) || !is_string($bdTxt)) throw new \Exception("not valid params in Response's __construct");
+    {   //FIXME
+        if(!is_string($code) || !is_ string($bdTxt)) throw new \Exception("not valid params in Response's __construct");
         switch ($code){
         
             case '100 Continue!': 

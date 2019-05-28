@@ -45,8 +45,7 @@ class Render
         $path = __DIR__ . "/../MVC/Views/" . $ViewName;
         if (file_exists($path)) {
             $config = json_decode($data, true);
-            $str = file_get_contents(eval($path));
-            return $str;
+            include($path);        //FIXME!!!
         } else {
             throw new \Exception('invalid params in Render::renderView();');
         }

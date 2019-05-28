@@ -86,8 +86,8 @@ $app->get('/form', function(){
         "inputs": ["name", "surname", "Moscow", "Russia", "none", "+79259259259", "admin@mail.ru"],
         "submit": "Submit Query"
     }';
-  
-    $resp = new Response('200 Ok!', Render::renderView($conf,'MailForm.php'));
+    //FIXME!
+    $resp = new Response('200 Ok!', Render::renderView($conf,'MailForm.phtml'));
     $resp -> send();
 });
 
