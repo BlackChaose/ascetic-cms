@@ -5,7 +5,7 @@ class Response{
     private $callback;
     private $body;
     public function __construct($code, $bdTxt)
-    {
+    {   //FIXME
         if(!is_string($code) || !is_string($bdTxt)) throw new \Exception("not valid params in Response's __construct");
         switch ($code){
 
