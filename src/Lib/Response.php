@@ -3,90 +3,84 @@ namespace AsceticCMS\Lib;
 
 class Response{
     private $callback;
-    private $body;    
+    private $body;
     public function __construct($code, $bdTxt)
     {
-<<<<<<< HEAD
         if(!is_string($code) || !is_string($bdTxt)) throw new \Exception("not valid params in Response's __construct");
-=======
-        if(!is_string($code) || !is_string($bdTxt)){
-            throw new \Exception('invalid param in __construct, class Response');
-        }
->>>>>>> 650eb7b822ad500ba8d101a58a207a04ea862fb7
         switch ($code){
-        
-            case '100 Continue!': 
+
+            case '100 Continue!':
             $this -> callback = function(){
                 http_response_code(100);
             };
             break;
 
-            case '102 Processing!': 
+            case '102 Processing!':
             $this -> callback = function(){
                 http_response_code(102);
             };
             break;
-            
-            case '200 Ok!': 
+
+            case '200 Ok!':
                 $this -> callback = function(){
                     http_response_code(200);
                 };
                 break;
 
-            case '201 Ok!': 
+            case '201 Ok!':
                 $this -> callback = function(){
                     http_response_code(201);
                 };
                 break;
-            
-            case '301 Redirect!': 
+
+            case '301 Redirect!':
                 $this -> callback = function(){
                     http_response_code(301);
                 };
                 break;
-                
-            case '302 Found!': 
+
+            case '302 Found!':
                 $this -> callback = function(){
                     http_response_code(302);
                 };
                 break;
 
-            case '400 Bad Request!': 
+            case '400 Bad Request!':
                 $this -> callback = function(){
                     http_response_code(400);
                 };
-                break;                
-            
-            case '401 Unauthorized': 
+                break;
+
+            case '401 Unauthorized':
                 $this -> callback = function(){
                     http_response_code(401);
                 };
                 break;
 
-            case '403 Forbidden!': 
+            case '403 Forbidden!':
                 $this -> callback = function(){
                     http_response_code(403);
                 };
-                break;        
+                break;
 
-            case '404 Not Found!': 
+            case '404 Not Found!':
                 $this -> callback = function(){
                     http_response_code(404);
                 };
-                break;    
-            
-            case '405 Not Acceptable': 
+                break;
+
+            case '405 Not Acceptable':
                 $this -> callback = function(){
                     http_response_code(405);
                 };
                 break;
-            default: 
+            default:
                 $this -> callback = function(){
                     http_response_code(500);
                 };
                 break;
         }
-        $this->body = $bdTxt;        
+        $this->body = $bdTxt;
     }
     public function send(){
         call_user_func($this->callback);
