@@ -16,6 +16,14 @@ $app->get('',function() use($si) {
     $resp -> send();
 });
 
+$app->get('/table/:name/describe',function($arr){
+  $tableName = $arr['name'];
+  //print $tableName;
+  $result = json_encode(SimpleRecord::describeTable($tableName));
+  $resp = new Response('200 Ok!', $result);
+  $resp -> send();
+});
+
 $app->get('/zen',function() use($si) {
     $text=array(
        "zen" => array(
@@ -44,6 +52,11 @@ $app->get('/zen',function() use($si) {
     $resp -> send();
 });
 
+$app->get('/phpinfo', function(){
+  $resp = new Response('200 Ok!', phpinfo());
+  $resp -> send();
+});
+
 $app->get('/tst/1', function(){
     $resp = new Response('200 Ok!', "HI! Dunduk! How are you?");
     $resp -> send();
@@ -55,7 +68,7 @@ $app->get('/tst/put', function(){
 });
 
 $app->get('/tst/db', function(){
-    $dt = new SimpleRecord();    
+    $dt = new SimpleRecord();
     $resp = new Response('200 Ok!', implode(";", $dt->readTable('users')));
     //$resp = new Response('200 Ok!', phpinfo());
     $resp -> send();
@@ -65,7 +78,7 @@ $app->get('/tst/tpl', function(){
     $ren = new Render();
     $ren->run('./src/MVC/Views/View.tpl');
     $s = implode('<br>',$ren->show());
-    $resp = new Response('200 Ok!', $s);    
+    $resp = new Response('200 Ok!', $s);
     $resp -> send();
 });
 

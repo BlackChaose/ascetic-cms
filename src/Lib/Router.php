@@ -6,16 +6,22 @@ class Router{
     private function checkRoute($route){
         //fixme
     }
-    public function get($str, $callback){
+    public static function get($str, $callback){
         if($_SERVER['REQUEST_METHOD'] !== 'GET'){
             return false;
-        }       
+        }
+
         if((empty($_SERVER['REQUEST_URI']) || $_SERVER['REQUEST_URI']=='/') && $str == ''){
             return $callback;
-        }else if(!empty($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] == $str){      
+        }else if(!empty($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] == $str){
             return $callback;
+        }else if(Request::cmpPlaceholder($str, $_SERVER['REQUEST_URI'])){
+            $param = Request::cmpPlaceholder($str, $_SERVER['REQUEST_URI']);
+            return function($p)use($param){$callback($param);};
         }
-        else return false;
+        else {
+          return false;
+        }
     }
 
     public function post($str, $callback){
@@ -26,7 +32,7 @@ class Router{
 
     public function put($str, $callback){
         if($_SERVER['REQUEST_METHOD'] === 'POST' && strtoupper($_POST['_method']) === 'PUT'){
-            return $callback;            
+            return $callback;
         }else {
             return false;
         }
@@ -35,7 +41,7 @@ class Router{
 
     public function patch($str, $callback){
         if($_SERVER['REQUEST_METHOD'] === 'POST' && strtoupper($_POST['_method']) === 'PATCH'){
-            return $callback;            
+            return $callback;
         }else {
             return false;
         }
@@ -43,7 +49,7 @@ class Router{
 
     public function delete($str, $callback){
         if($_SERVER['REQUEST_METHOD'] === 'POST' && strtoupper($_POST['_method']) === 'DELETE'){
-            return $callback;            
+            return $callback;
         }else {
             return false;
         }
