@@ -1,7 +1,7 @@
 <?php
 /**
  * Ascetic-CMS App
- * Продумать логику - создание объекта App , прописывание  маршрутоа, обработка теукущего  и рендер после запуска App->run();
+ * @todo Продумать логику - создание объекта App , прописывание  маршрутоа, обработка теукущего  и рендер после запуска App->run();
  */
 namespace AsceticCMS\Lib;
 
@@ -12,10 +12,19 @@ class App {
 		return self::VERSION;
 	}
 
+	/**
+	say "Hello"
+	 */
 	public function sayHello() {
 		return "Hello!";
 	}
 
+	/**
+	 * hanlder for GET
+	 * @param  string
+	 * @param  callable
+	 * @return no    side effect - $this->callbackArray for store callback functions
+	 */
 	public function get($str, callable $callback) {
 		if (!is_string($str)) {
 			throw new \Exception('not valid param $str in App->get($str, $callback)');
@@ -25,12 +34,23 @@ class App {
 		}
 	}
 
-	public function put($str, $callback) {
+	/**
+	 * hanlder for PUT
+	 * @param  string
+	 * @param  callback
+	 * @return no    side effect see comment up
+	 */
+	public function put($str, callable $callback) {
 		if (Router::put($str, $callback)) {
 			array_push($this->callbackArray, $callback);
 		}
 	}
 
+	/**
+	 * run hanlders and callbackFunctions in $this->callbackArray.
+	 *
+	 * @return mix boolean | result of call callback function
+	 */
 	public function run() {
 		try {
 			if (count($this->callbackArray) === 0) {

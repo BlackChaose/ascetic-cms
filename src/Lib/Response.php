@@ -1,10 +1,16 @@
 <?php
 namespace AsceticCMS\Lib;
-
-class Response
+/**
+ * Class for create responce to clients
+ */
 {
     private $callback;
     private $body;
+    
+    /**
+     * @param  string
+     * @param  string
+     */
     public function __construct($code, $bdTxt)
     {
         //FIXME
@@ -94,6 +100,10 @@ class Response
         }
         $this->body = $bdTxt;
     }
+
+    /**
+     * @return mix 
+     */
     public function send()
     {
         call_user_func($this->callback);
