@@ -1,3 +1,4 @@
 /vendor/
 /config/
 composer.lock
+/Lib/log/error.log

@@ -21,7 +21,6 @@ class Request
         $arrStrip = explode('/', trim($strip));
 
         if (count($arrMask) !== count($arrStrip)) {
-            //print(get_class() . " say: arrMask !== arrStrip!" . " return false! <br>");
             return false;
         }
 
@@ -29,24 +28,16 @@ class Request
 
         for ($i = 0; $i < count($arrMask); $i++) {
             if ($arrMask[$i] === $arrStrip[$i]) {
-                //print(get_class() . " say: arrMask[i] == arrStrip[i] !" . "<br>");
                 continue;
             } else if ($arrMask[$i][0] === ":") {
-                //print(get_class() . " say: find placeholder!" . "<br>");
+
                 $name = preg_replace('/\:/', '', $arrMask[$i]);
                 $buf["$name"] = $arrStrip[$i];
-                //print(get_class() . " say: " . $name . " = " . $arrStrip[$i] . "<br>");
                 continue;
             } else {
-                //print(get_class() . " say: false! not matches!" . " return false!<br>");
                 return false;
             }
         }
-
-        // print(get_class() . " say: ");
-        // print_r($buf);
-        // print(" sended! <br>");
-
         return $buf;
     }
 }
