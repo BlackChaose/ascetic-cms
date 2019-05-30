@@ -2,50 +2,87 @@
 
 namespace AsceticCMS\Lib;
 
-/* CREATE USER 'ascetic_user'@'localhost' IDENTIFIED BY 'ascetpasskey12!'; */
-class SimpleRecord {
-	public function pdoInit() {
-		$file_path = __DIR__ . "/../../config/config.php";
-		if (file_exists($file_path)) {
-			require_once $file_path;
-		} else {
-			throw new Exception("configuration file not exist!!! check your config!");
-		}
-		$dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
-		$opt = [
-			\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-			\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-			\PDO::ATTR_EMULATE_PREPARES => true,
-		];
-		$pdo = new \PDO($dsn, DB_USER_LOGIN, DB_USER_PASSKEY, $opt);
-		return $pdo;
-	}
+/**
+ * Wrap for work with Database
+ * @todo  another methods for work
+ * @todo  validations & security
+ *
+ */
 
-	public function readTable(string $tableName) {
-		$pdo = $this->pdoInit();
-		$query = 'SELECT * FROM ' . $tableName;
-		$stmt = $pdo->query($query);
-		$result = array();
-		while ($row = $stmt->fetch()) {
-			array_push($result, $row);
-		}
+class SimpleRecord
+{
+    /**
+     * [pdoInit connect to DB initializaion]
+     * @return [\PDO object] []
+     */
+    public static function pdoInit()
+    {
+        $file_path = __DIR__ . "/../../config/config.php";
+        if (file_exists($file_path)) {
+            require_once $file_path;
+        } else {
+            throw new Exception("configuration file not exist!!! check your config!");
+        }
+        $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
+        $opt = [
+            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+            \PDO::ATTR_EMULATE_PREPARES => true,
+        ];
+        $pdo = new \PDO($dsn, DB_USER_LOGIN, DB_USER_PASSKEY, $opt);
+        return $pdo;
+    }
 
-		return $result;
-	}
+    /**
+     * [readTable - get data from table with name $tableName]
+     * @param  [string]  $tableName [name of table]
+     * @param  integer $num       [LIMIT]
+     * @return [array]            [array of query's result]
+     */
+    public static function readTable($tableName, $num = 10)
+    {
+        if (!$tableName) {
+            throw new \Exception("<b>Alarm!</b> from: " . get_class() . ". <em>Invalid <b>$tableName</b> param<em>");
+        }
+        $pdo = self::pdoInit();
 
-	public function describeTable($tableName) {
-		$pdo = self::pdoInit();
-		// $stmt = $pdo->prepare('DESCRIBE ?');
+        //FIXME: validate $tableNum & $num + add array of allowed table's names and checing for it.
+        $tableNameParam = "`" . str_replace("`", "``", $tableName) . "`";
 
-		// $stmt->execute(array($tableName));
-		//FIXME - not work with prepare!@
-		$stmt = $pdo->query('DESCRIBE ' . $tableName);
-		$result = array();
+        $query = "SELECT * FROM $tableNameParam LIMIT ?"; //fixme: validate $tableName
+        $stmt = $pdo->prepare($query);
 
-		while ($row = $stmt->fetch()) {
-			array_push($result, $row);
-		}
-		$stmt->closeCursor();
-		return $result;
-	}
+        $stmt->bindValue(1, $num, \PDO::PARAM_INT);
+        // $stmt->debugDumpParams();
+        $stmt->execute();
+
+        $result = array();
+        while ($row = $stmt->fetch()) {
+            array_push($result, $row);
+        }
+
+        return $result;
+
+    }
+
+    /**
+     * [describeTable get information about structure of table in DB]
+     * @param  [string] $tableName [napme of table]
+     * @return [array]            [array of query's result]
+     */
+    public static function describeTable($tableName)
+    {
+        $pdo = self::pdoInit();
+        $query = 'DESCRIBE :name';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute(array(':name' => $tableName));
+
+        $result = array();
+
+        while ($row = $stmt->fetch()) {
+            array_push($result, $row);
+        }
+        $stmt->closeCursor();
+        return $result;
+    }
 }
