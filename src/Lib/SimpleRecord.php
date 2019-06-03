@@ -68,6 +68,9 @@ class SimpleRecord {
 	 * @return array            array of query's result
 	 */
 	public static function describeTable($tableName) {
+		if (!$tableName) {
+			throw new \Exception("<b>Alarm!</b> from: " . get_class() . ". <em>Invalid <b>$tableName</b> param<em>");
+		}
 		$pdo = self::pdoInit();
 		$query = 'DESCRIBE :name';
 		$stmt = $pdo->prepare($query);
