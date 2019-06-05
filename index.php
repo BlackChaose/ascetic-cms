@@ -42,6 +42,8 @@ $app->get('/api/table/:name/describe', function () {
 
 $app->get('/api/table/:name', function () {
     $param = array();
+	/*for debug*/ /**FIXME: delete after debuging! */
+	sleep(3);		
     $param = Request::cmpPlaceholder('/api/table/:name', $_SERVER['REQUEST_URI']);
 
     $tableName = $param['name'];
