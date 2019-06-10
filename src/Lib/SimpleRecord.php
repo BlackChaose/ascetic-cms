@@ -123,4 +123,30 @@ class SimpleRecord {
 		return $result;
 
 	}
+
+	public static function readTableById($tableName, $id) {
+		if (!$tableName) {
+			throw new \Exception("<b>Alarm!</b> from: " . get_class() . ". <em>Invalid <b>$tableName</b> param<em>");
+		}
+		if (!$id) {
+			throw new \Exception("<b>Alarm!</b> from: " . get_class() . ". <em>Invalid <b>$paramName</b> param<em>");
+		}
+
+		$pdo = self::pdoInit();
+		$tableNamePrepared = "`" . str_replace("`", "``", $tableName) . "`";
+
+		$query = "SELECT * FROM $tableNamePrepared WHERE IdOrg = ?";
+
+		$stmt = $pdo->prepare($query);
+		$stmt->bindValue(1, $id, \PDO::PARAM_INT);
+		$stmt->execute();
+
+		$result = array();
+		while ($row = $stmt->fetch()) {
+			array_push($result, $row);
+		}
+
+		return $result;
+
+	}
 }

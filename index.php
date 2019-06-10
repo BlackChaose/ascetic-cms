@@ -68,6 +68,20 @@ $app->get('/api/table/:name/:param/:num', function () {
 	$resp->send();
 });
 
+$app->get('/api/table/:name/:id', function () {
+	$param = array();
+	/*for debug*//**FIXME: delete after debuging! */
+	sleep(3);
+	$param = Request::cmpPlaceholder('/api/table/:name/:id', $_SERVER['REQUEST_URI']);
+
+	$tableName = $param['name'];
+	$paramId = $param['id'];
+
+	$result = json_encode(SimpleRecord::readTableById($tableName, $paramId), JSON_UNESCAPED_UNICODE);
+	$resp = new Response('200 JSON', $result);
+	$resp->send();
+});
+
 /**
  * calc zen of python. good word! (ruRU)
  */

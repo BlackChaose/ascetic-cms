@@ -62,7 +62,10 @@ class App {
 				call_user_func($callFunc);
 				return true;
 			} else {
-				$resp = new Response('500 Server Error!', 'Error!!! Please message to system administrator! ');
+				//TODO : FIXME!!!
+				// print(count($this->callbackArray));
+				// print_r($this->callbackArray);die;
+				$resp = new Response('500 Server Error!', 'Error!!! Please message to system administrator!!!!');
 				$resp->send();
 				return false;
 			}
