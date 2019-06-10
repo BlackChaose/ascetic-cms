@@ -108,7 +108,7 @@ class SimpleRecord {
 			throw new \Exception("SQL error! Argument not in WhiteList!");
 		}
 
-		$query = "SELECT $paramNamePrepared FROM $tableNamePrepared LIMIT ?"; //fixme: validate $tableName
+		$query = "SELECT IdOrg, $paramNamePrepared FROM $tableNamePrepared LIMIT ?"; //fixme: validate $tableName
 		$stmt = $pdo->prepare($query);
 
 		$stmt->bindValue(1, $num, \PDO::PARAM_INT);
