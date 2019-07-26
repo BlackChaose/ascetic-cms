@@ -1,5 +1,5 @@
 # Ascetic CMS
-
+:up::  FIXME - see ToDO and Fixes! 
 ## Minimalistic CMS for simple use.
 
 You can use it for landing page, microblog or home personal page.
